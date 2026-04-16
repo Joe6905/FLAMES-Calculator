@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-neon-purple: #bf00ff;
+  --color-neon-pink: #ff007f;
+  --color-dark-bg: #0b0214;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-[#f0f0f0] antialiased overflow-hidden font-sans;
+    background: #0b0214;
+  }
+}
+
+@layer components {
+  .mesh-bg {
+    @apply absolute inset-0 -z-10;
+    background: 
+      radial-gradient(circle at 20% 20%, #4a0080 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, #66004d 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, #1a0136 0%, transparent 100%);
+  }
+
+  .glass-card {
+    @apply bg-white/3 backdrop-blur-[25px] border border-white/10 rounded-[40px] shadow-[0_25px_50px_rgba(0,0,0,0.5)];
+  }
+
+  .neon-input {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-lg outline-none transition-all duration-300;
+  }
+
+  .neon-input:focus {
+    @apply border-neon-purple shadow-[0_0_15px_rgba(191,0,255,0.3)];
+  }
+
+  .calculate-btn {
+    @apply w-full p-[18px] rounded-[50px] border-none bg-linear-to-r from-neon-purple to-neon-pink text-white font-bold text-lg uppercase tracking-[2px] cursor-pointer shadow-[0_0_20px_rgba(255,0,127,0.4)] transition-transform active:scale-95;
+  }
+
+  .letter-box {
+    @apply w-[45px] h-[45px] flex items-center justify-center rounded-xl bg-white/5 font-bold text-xl text-white/30 border border-transparent transition-all;
+  }
+
+  .letter-box.active {
+    @apply text-white bg-neon-purple/20 border-neon-purple shadow-[0_0_15px_#bf00ff];
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-linear-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(191,0,255,0.5)];
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
